@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <main class="app-shell">
+        <section class="calculator" aria-label="Calculator">
+            <div class="display-panel">
+                <div class="brand-row">
+                    <span class="brand-mark">VA</span>
+                    <span>Flask Calculator</span>
+                </div>
+                <div class="expression" id="expression" aria-live="polite">0</div>
+                <div class="result" id="result" aria-live="assertive">Ready</div>
+            </div>
+
+            <div class="memory-row" aria-label="Memory controls">
+                <button type="button" data-action="memory-clear">MC</button>
+                <button type="button" data-action="memory-recall">MR</button>
+                <button type="button" data-action="memory-add">M+</button>
+                <button type="button" data-action="memory-subtract">M-</button>
+            </div>
+
+            <div class="keypad" aria-label="Calculator keys">
+                <button type="button" class="key utility" data-action="clear">AC</button>
+                <button type="button" class="key utility" data-action="backspace">⌫</button>
+                <button type="button" class="key utility" data-action="percent">%</button>
+                <button type="button" class="key operator" data-value="÷">÷</button>
+
+                <button type="button" class="key function" data-value="sqrt(">√</button>
+                <button type="button" class="key function" data-value="(">(</button>
+                <button type="button" class="key function" data-value=")">)</button>
+                <button type="button" class="key operator" data-value="×">×</button>
+
+                <button type="button" class="key number" data-value="7">7</button>
+                <button type="button" class="key number" data-value="8">8</button>
+                <button type="button" class="key number" data-value="9">9</button>
+                <button type="button" class="key operator" data-value="-">−</button>
+
+                <button type="button" class="key number" data-value="4">4</button>
+                <button type="button" class="key number" data-value="5">5</button>
+                <button type="button" class="key number" data-value="6">6</button>
+                <button type="button" class="key operator" data-value="+">+</button>
+
+                <button type="button" class="key number" data-value="1">1</button>
+                <button type="button" class="key number" data-value="2">2</button>
+                <button type="button" class="key number" data-value="3">3</button>
+                <button type="button" class="key equal" data-action="calculate">=</button>
+
+                <button type="button" class="key number zero" data-value="0">0</button>
+                <button type="button" class="key number" data-value=".">.</button>
+                <button type="button" class="key function" data-value="^">xʸ</button>
+            </div>
+        </section>
+
+        <aside class="side-panel" aria-label="Calculator details">
+            <div class="tool-strip" aria-label="Scientific functions">
+                <button type="button" data-value="sin(">sin</button>
+                <button type="button" data-value="cos(">cos</button>
+                <button type="button" data-value="tan(">tan</button>
+                <button type="button" data-value="log(">log</button>
+                <button type="button" data-value="ln(">ln</button>
+                <button type="button" data-value="π">π</button>
+                <button type="button" data-value="e">e</button>
+            </div>
+
+            <div class="history-header">
+                <h1>History</h1>
+                <button type="button" id="clear-history">Clear</button>
+            </div>
+            <ol class="history-list" id="history-list">
+                <li class="empty-history">No calculations yet</li>
+            </ol>
+        </aside>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/calculator.js') }}"></script>
+</body>
+</html>
