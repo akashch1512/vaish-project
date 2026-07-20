@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }} | Personal Blog{% endblock %}
+
+{% block content %}
+<section class="page-top compact">
+    <div>
+        <p class="eyebrow">Writing desk</p>
+        <h1>{{ page_title }}</h1>
+        <p>Keep the post clear, useful, and ready for readers.</p>
+    </div>
+</section>
+
+<section class="content-section">
+    <form class="editor-form" method="post">
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text" value="{{ post['title'] or '' }}" placeholder="A clear headline for your post">
+
+        <label for="summary">Short summary</label>
+        <textarea id="summary" name="summary" rows="3" placeholder="A quick preview for readers">{{ post['summary'] or '' }}</textarea>
+
+        <label for="content">Content</label>
+        <textarea id="content" name="content" rows="14" placeholder="Write your full blog post here">{{ post['content'] or '' }}</textarea>
+
+        <label class="checkbox-row" for="is_published">
+            <input id="is_published" name="is_published" type="checkbox" {% if post['is_published'] %}checked{% endif %}>
+            Publish this post
+        </label>
+
+        <div class="form-actions">
+            <button class="primary-action" type="submit">{{ button_label }}</button>
+            <a class="secondary-action" href="{{ url_for('dashboard') }}">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

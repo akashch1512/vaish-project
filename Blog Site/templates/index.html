@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Published Posts | Personal Blog{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="eyebrow">Clean personal publishing</p>
+        <h1>Your published thoughts, gathered in one calm place.</h1>
+        <p class="hero-copy">Write drafts, refine ideas, and publish polished posts with a simple SQLite-powered Flask blog.</p>
+    </div>
+    <a class="primary-action" href="{{ url_for('create_post') }}">Write a post</a>
+</section>
+
+<section class="content-section">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Live blog</p>
+            <h2>Published posts</h2>
+        </div>
+        <a class="text-link" href="{{ url_for('dashboard') }}">Manage all posts</a>
+    </div>
+
+    {% if posts %}
+        <div class="post-grid">
+            {% for post in posts %}
+                <article class="post-card">
+                    <p class="post-date">{{ post["published_at"] or post["created_at"] }}</p>
+                    <h3><a href="{{ url_for('post_detail', post_id=post['id']) }}">{{ post["title"] }}</a></h3>
+                    <p>{{ post["summary"] }}</p>
+                    <a class="read-more" href="{{ url_for('post_detail', post_id=post['id']) }}">Read post</a>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h3>No published posts yet</h3>
+            <p>Create your first post and publish it when it is ready.</p>
+            <a class="primary-action" href="{{ url_for('create_post') }}">Create first post</a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
